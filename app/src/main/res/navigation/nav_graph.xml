@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/matchesFragment">
+
+    <fragment
+        android:id="@+id/matchesFragment"
+        android:name="com.example.csgomatches.matches.ui.MatchesFragment"
+        android:label="fragment_matches"
+        tools:layout="@layout/fragment_matches" >
+        <action
+            android:id="@+id/action_matchesFragment_to_matchDetailFragment"
+            app:destination="@id/matchDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchDetailFragment"
+        android:name="com.example.csgomatches.matches.ui.MatchDetailFragment"
+        android:label="fragment_match_detail"
+        tools:layout="@layout/fragment_match_detail" />
+</navigation>
