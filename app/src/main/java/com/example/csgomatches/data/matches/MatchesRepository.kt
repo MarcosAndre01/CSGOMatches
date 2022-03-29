@@ -1,5 +1,6 @@
 package com.example.csgomatches.data.matches
 
+import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -47,9 +48,16 @@ class MatchesRepository(
         return dateFormat.parse(date)
     }
 
-    private fun getMatchStatus(match: MatchResponse): MatchStatus {
-        return MatchStatus.NotStarted
-    }
+    private fun getMatchStatus(match: MatchResponse): MatchStatus =
+        when (match.status) {
+            "running" -> MatchStatus.Running
+            "finished" -> MatchStatus.Finished
+            "not_started" -> MatchStatus.NotStarted
+            else -> {
+                Log.d(TAG, "getMatchStatus: Unknown status ${match.status} for matchId ${match.id}")
+                MatchStatus.NotStarted
+            }
+        }
 
     private fun getTeams(match: MatchResponse): Pair<Team, Team>? {
         val opponents = match.opponents
