@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.csgomatches.data.matches.MatchesRepository
 import com.example.csgomatches.databinding.FragmentMatchesBinding
-import com.example.csgomatches.matches.data.MatchesRepository
 import com.example.csgomatches.matches.data.service.MatchesRemoteDataSource
 import kotlinx.coroutines.flow.collect
 
