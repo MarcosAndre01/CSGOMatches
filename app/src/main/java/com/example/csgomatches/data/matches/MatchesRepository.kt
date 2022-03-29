@@ -65,19 +65,15 @@ class MatchesRepository(
             return null
         }
 
-        val firstTeam = Team(
-            id = opponents[0].opponent.id,
-            name = opponents[0].opponent.name,
-            imageUrl = opponents[0].opponent.imageUrl.toString(),
-            players = null
-        )
-        val secondTeam = Team(
-            id = opponents[1].opponent.id,
-            name = opponents[1].opponent.name,
-            imageUrl = opponents[1].opponent.imageUrl.toString(),
-            players = null
-        )
-
+        val firstTeam = opponents[0].opponent.toTeam()
+        val secondTeam = opponents[1].opponent.toTeam()
         return Pair(firstTeam, secondTeam)
     }
+
+    private fun MatchResponse.Opponent.Opponent.toTeam(): Team = Team(
+        id = id,
+        name = name,
+        imageUrl = imageUrl.toString(),
+        players = null
+    )
 }
