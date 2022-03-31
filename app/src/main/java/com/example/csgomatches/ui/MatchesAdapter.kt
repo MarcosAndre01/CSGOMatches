@@ -50,7 +50,7 @@ class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(
             teams.first.imageUrl?.let { firstTeamImage.load(it) { placeholder(R.drawable.ic_image_placeholder) } }
             teams.second.imageUrl?.let { secondTeamImage.load(it) { placeholder(R.drawable.ic_image_placeholder) } }
 
-            leagueSerieTitle.text =
+            leagueSerie.text =
                 context.getString(R.string.league_serie, item.league, item.serie ?: "")
 
             matchTimeText.text = getMatchTimeText(item, context)

@@ -35,7 +35,7 @@ class MatchDetailFragment : Fragment() {
 
         viewModel.selectedMatch(args.selectedMatch)
         viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
-            binding.text.text = uiState.match.toString()
+            // binding.text.text = uiState.match.toString()
         }
     }
 

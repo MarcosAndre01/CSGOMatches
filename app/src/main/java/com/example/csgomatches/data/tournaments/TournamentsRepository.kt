@@ -6,7 +6,7 @@ import com.example.csgomatches.ui.model.Match
 import com.example.csgomatches.ui.model.Player
 
 class TournamentsRepository(private val tournamentsRemoteDataSource: TournamentsRemoteDataSource) {
-    suspend fun getRostersForMatch(match: Match): Pair<Set<Player>, Set<Player>>? {
+    suspend fun getRostersForMatch(match: Match): Pair<List<Player>, List<Player>>? {
         if (match.teams == null) {
             return null
         }
@@ -22,7 +22,7 @@ class TournamentsRepository(private val tournamentsRemoteDataSource: Tournaments
         return getPlayers(rosters)
     }
 
-    private fun getPlayers(rostersDto: List<RostersResponse.Roster>): Pair<Set<Player>, Set<Player>> {
+    private fun getPlayers(rostersDto: List<RostersResponse.Roster>): Pair<List<Player>, List<Player>> {
         val rosters: MutableList<List<Player>> = mutableListOf()
         for (rosterDto in rostersDto) {
             val roster = rosterDto.players.map { playerDto ->
@@ -31,7 +31,7 @@ class TournamentsRepository(private val tournamentsRemoteDataSource: Tournaments
             rosters.add(roster)
         }
 
-        return Pair(rosters[0].toSet(), rosters[1].toSet())
+        return Pair(rosters[0], rosters[1])
     }
 
     private fun RostersResponse.Roster.Player.toPlayer(): Player = Player(
