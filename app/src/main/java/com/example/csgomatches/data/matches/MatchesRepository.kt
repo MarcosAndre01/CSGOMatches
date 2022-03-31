@@ -19,7 +19,6 @@ private const val PAGE_SIZE = 50
 class MatchesRepository(
     private val matchesRemoteDataSource: MatchesRemoteDataSource,
 ) {
-
     fun getMatches(): Flow<PagingData<Match>> = Pager(
         config = PagingConfig(pageSize = PAGE_SIZE)
     ) {
@@ -38,7 +37,7 @@ class MatchesRepository(
         beginAt = beginAt?.let { formatDate(it) },
         teams = getTeams(this),
         league = league.name,
-        serie = serie.name.toString(),
+        serie = if (serie.name is String) serie.name else null,
         tournamentId = tournamentId
     )
 

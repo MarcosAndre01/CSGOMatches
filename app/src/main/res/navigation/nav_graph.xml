@@ -18,5 +18,8 @@
         android:id="@+id/matchDetailFragment"
         android:name="com.example.csgomatches.ui.MatchDetailFragment"
         android:label="fragment_match_detail"
-        tools:layout="@layout/fragment_match_detail" />
+        tools:layout="@layout/fragment_match_detail" >
+        <argument android:name="selectedMatch"
+            app:argType="com.example.csgomatches.ui.model.Match" />
+    </fragment>
 </navigation>
