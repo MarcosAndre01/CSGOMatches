@@ -21,7 +21,7 @@ private interface MatchesService {
         @Query("sort") sort: String = "-status,begin_at",
         @Query("filter[status]") statusFilter: String = "running,not_started",
         @Query("filter[unscheduled]") showUnscheduled: Boolean = false,
-        @Query("filter[detailed_stats]") showOnlyWithDetailedStats: Boolean = false,
+        // @Query("filter[detailed_stats]") showOnlyWithDetailedStats: Boolean = true,
         @Header("Authorization") authToken: String = API_TOKEN,
     ): List<MatchResponse>
 }
