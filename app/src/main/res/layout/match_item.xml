@@ -113,7 +113,7 @@
         app:layout_constraintTop_toTopOf="@id/league_guideline" />
 
     <TextView
-        android:id="@+id/league_serie_title"
+        android:id="@+id/league_serie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"

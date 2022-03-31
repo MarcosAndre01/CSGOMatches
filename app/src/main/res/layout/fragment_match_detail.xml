@@ -1,15 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.MatchDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/league_serie_title"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="League + serie" />
+    <TextView
+        android:id="@+id/date"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/league_serie_title"
+        android:layout_marginTop="126dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Hoje, 21:00"
+        />
 
-</FrameLayout>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/first_team_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@id/first_team_name"
+        app:layout_constraintEnd_toStartOf="@+id/versus"
+        app:layout_constraintTop_toBottomOf="@id/league_serie_title"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:shapeAppearanceOverlay="@style/rounded_image_view"
+        android:src="@color/image_placeholder" />
+
+    <TextView
+        android:id="@+id/first_team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@id/date"
+        app:layout_constraintEnd_toEndOf="@id/first_team_image"
+        app:layout_constraintStart_toStartOf="@id/first_team_image"
+        app:layout_constraintTop_toBottomOf="@id/first_team_image"
+        tools:text="Time 1" />
+
+    <TextView
+        android:id="@+id/versus"
+        android:text="@string/vs"
+        android:textColor="#80FFFFFF"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/league_serie_title" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/second_team_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@id/second_team_name"
+        app:layout_constraintStart_toEndOf="@+id/versus"
+        app:layout_constraintTop_toBottomOf="@id/league_serie_title"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:shapeAppearanceOverlay="@style/rounded_image_view"
+        android:src="@color/image_placeholder" />
+
+    <TextView
+        android:id="@+id/second_team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@id/date"
+        app:layout_constraintEnd_toEndOf="@id/second_team_image"
+        app:layout_constraintStart_toStartOf="@id/second_team_image"
+        app:layout_constraintTop_toBottomOf="@id/second_team_image"
+        tools:text="Time 2" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/first_team_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/date"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/second_team_list"
+        android:layout_marginEnd="7dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/second_team_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/date"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@id/first_team_list"
+        android:layout_marginStart="7dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
