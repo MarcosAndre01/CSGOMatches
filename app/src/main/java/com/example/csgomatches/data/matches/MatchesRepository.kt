@@ -1,16 +1,13 @@
 package com.example.csgomatches.data.matches
 
 import android.util.Log
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.map
-import com.example.csgomatches.matches.data.paging.MatchesPagingSource
-import com.example.csgomatches.matches.data.service.MatchResponse
-import com.example.csgomatches.matches.data.service.MatchesRemoteDataSource
-import com.example.csgomatches.matches.ui.model.Match
-import com.example.csgomatches.matches.ui.model.MatchStatus
-import com.example.csgomatches.matches.ui.model.Team
+import androidx.paging.*
+import com.example.csgomatches.data.matches.paging.MatchesPagingSource
+import com.example.csgomatches.data.matches.service.MatchResponse
+import com.example.csgomatches.data.matches.service.MatchesRemoteDataSource
+import com.example.csgomatches.ui.model.Match
+import com.example.csgomatches.ui.model.MatchStatus
+import com.example.csgomatches.ui.model.Team
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.text.SimpleDateFormat
@@ -28,7 +25,9 @@ class MatchesRepository(
     ) {
         MatchesPagingSource(matchesRemoteDataSource)
     }.flow.map { pagingData ->
-        pagingData.map { matchResponse ->
+        pagingData.filter { matchResponse ->
+            matchResponse.opponents.size == 2
+        }.map { matchResponse ->
             matchResponse.toMatch()
         }
     }
@@ -59,21 +58,27 @@ class MatchesRepository(
             }
         }
 
-    private fun getTeams(match: MatchResponse): Pair<Team, Team>? {
-        val opponents = match.opponents
-        if (opponents.size != 2) {
-            return null
-        }
-
-        val firstTeam = opponents[0].opponent.toTeam()
-        val secondTeam = opponents[1].opponent.toTeam()
+    private fun getTeams(match: MatchResponse): Pair<Team, Team> {
+        val firstTeam = match.opponents[0].opponent.toTeam()
+        val secondTeam = match.opponents[1].opponent.toTeam()
         return Pair(firstTeam, secondTeam)
     }
 
     private fun MatchResponse.Opponent.Opponent.toTeam(): Team = Team(
         id = id,
         name = name,
-        imageUrl = imageUrl.toString(),
+        imageUrl = imageUrlAsThumb(imageUrl),
         players = null
     )
+
+    private fun imageUrlAsThumb(defaultImageUrl: String?): String? {
+        if (defaultImageUrl == null) {
+            return null
+        }
+
+        val url = StringBuilder(defaultImageUrl)
+        val afterLastSlash = url.lastIndexOf("/") + 1
+        url.insert(afterLastSlash, "thumb_")
+        return url.toString()
+    }
 }

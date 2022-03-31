@@ -1,15 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/match_card"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="176dp"
+    android:layout_margin="24dp"
+    android:background="@drawable/match_card">
 
-    <TextView
-        android:id="@+id/match"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/match_time_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="25dp" />
+
+    <View
+        android:id="@+id/match_time"
+        android:layout_width="55dp"
+        android:layout_height="25dp"
+        android:background="@drawable/match_time"
+        app:layout_constraintBottom_toBottomOf="@id/match_time_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/match_time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/match_time"
+        app:layout_constraintEnd_toEndOf="@id/match_time"
+        app:layout_constraintStart_toStartOf="@id/match_time"
+        app:layout_constraintTop_toTopOf="@id/match_time"
+        tools:text="Seg, 16:00" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/first_team_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="20dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@id/first_team_name"
+        app:layout_constraintEnd_toStartOf="@+id/versus"
+        app:layout_constraintTop_toBottomOf="@id/match_time_guideline"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:shapeAppearanceOverlay="@style/rounded_image_view"
+        android:src="@color/image_placeholder" />
+
+    <TextView
+        android:id="@+id/first_team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@id/league_guideline"
+        app:layout_constraintEnd_toEndOf="@id/first_team_image"
+        app:layout_constraintStart_toStartOf="@id/first_team_image"
+        app:layout_constraintTop_toBottomOf="@id/first_team_image"
+        tools:text="Time 1" />
+
+    <TextView
+        android:id="@+id/versus"
+        android:text="@string/vs"
+        android:textColor="#80FFFFFF"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/league_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/match_time_guideline" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/second_team_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@id/second_team_name"
+        app:layout_constraintStart_toEndOf="@+id/versus"
+        app:layout_constraintTop_toBottomOf="@id/match_time_guideline"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:shapeAppearanceOverlay="@style/rounded_image_view"
+        android:src="@color/image_placeholder" />
+
+    <TextView
+        android:id="@+id/second_team_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@id/league_guideline"
+        app:layout_constraintEnd_toEndOf="@id/second_team_image"
+        app:layout_constraintStart_toStartOf="@id/second_team_image"
+        app:layout_constraintTop_toBottomOf="@id/second_team_image"
+        tools:text="Time 2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/league_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="32dp" />
+
+    <View
+        android:id="@+id/line_card_league"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/line_card_league"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/league_guideline" />
+
+    <TextView
+        android:id="@+id/league_serie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/league_guideline"
+        tools:text="League + serie " />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

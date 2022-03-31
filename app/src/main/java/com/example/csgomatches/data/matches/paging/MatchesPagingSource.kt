@@ -1,9 +1,9 @@
-package com.example.csgomatches.matches.data.paging
+package com.example.csgomatches.data.matches.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.csgomatches.matches.data.service.MatchResponse
-import com.example.csgomatches.matches.data.service.MatchesRemoteDataSource
+import com.example.csgomatches.data.matches.service.MatchResponse
+import com.example.csgomatches.data.matches.service.MatchesRemoteDataSource
 import retrofit2.HttpException
 import java.io.IOException
 

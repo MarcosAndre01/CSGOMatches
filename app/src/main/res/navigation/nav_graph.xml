@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/matchesFragment"
-        android:name="com.example.csgomatches.matches.ui.MatchesFragment"
+        android:name="com.example.csgomatches.ui.MatchesFragment"
         android:label="fragment_matches"
         tools:layout="@layout/fragment_matches" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/matchDetailFragment"
-        android:name="com.example.csgomatches.matches.ui.MatchDetailFragment"
+        android:name="com.example.csgomatches.ui.MatchDetailFragment"
         android:label="fragment_match_detail"
         tools:layout="@layout/fragment_match_detail" />
 </navigation>

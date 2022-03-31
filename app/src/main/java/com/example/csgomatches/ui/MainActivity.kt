@@ -1,4 +1,4 @@
-package com.example.csgomatches.matches
+package com.example.csgomatches.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

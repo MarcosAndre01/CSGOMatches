@@ -1,8 +1,8 @@
 package com.example.csgomatches.data.tournaments.service
 
 import android.util.Log
-import com.example.csgomatches.matches.data.service.API_TOKEN
-import com.example.csgomatches.matches.data.service.retrofit
+import com.example.csgomatches.data.API_TOKEN
+import com.example.csgomatches.data.retrofit
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path

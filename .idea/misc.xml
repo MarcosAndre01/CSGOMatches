@@ -3,10 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.215" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.215" />
+        <entry key="app/src/main/res/drawable/line_card_league.xml" value="0.215" />
+        <entry key="app/src/main/res/drawable/match_card.xml" value="0.215" />
+        <entry key="app/src/main/res/drawable/match_time.xml" value="0.215" />
+        <entry key="app/src/main/res/drawable/match_time_live.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-v31/match_item.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_match_detail.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/fragment_matches.xml" value="0.33697916666666666" />
-        <entry key="app/src/main/res/layout/match_item.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/match_item.xml" value="0.33" />
       </map>
     </option>
   </component>

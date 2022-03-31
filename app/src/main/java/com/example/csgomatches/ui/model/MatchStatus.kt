@@ -1,4 +1,4 @@
-package com.example.csgomatches.matches.ui.model
+package com.example.csgomatches.ui.model
 
 sealed class MatchStatus() {
     object NotStarted : MatchStatus()

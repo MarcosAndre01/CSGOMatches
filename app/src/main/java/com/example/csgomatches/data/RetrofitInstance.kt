@@ -1,4 +1,4 @@
-package com.example.csgomatches.matches.data.service
+package com.example.csgomatches.data
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

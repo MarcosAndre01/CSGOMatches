@@ -2,8 +2,8 @@ package com.example.csgomatches.data.tournaments
 
 import com.example.csgomatches.data.tournaments.service.RostersResponse
 import com.example.csgomatches.data.tournaments.service.TournamentsRemoteDataSource
-import com.example.csgomatches.matches.ui.model.Match
-import com.example.csgomatches.matches.ui.model.Player
+import com.example.csgomatches.ui.model.Match
+import com.example.csgomatches.ui.model.Player
 
 class TournamentsRepository(private val tournamentsRemoteDataSource: TournamentsRemoteDataSource) {
     suspend fun getRostersForMatch(match: Match): Pair<Set<Player>, Set<Player>>? {
