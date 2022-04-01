@@ -29,7 +29,7 @@ class MatchDetailFragment : Fragment() {
 
     private val leftTeamAdapter = LeftTeamAdapter()
     private val rightTeamAdapter = RightTeamAdapter()
-    
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

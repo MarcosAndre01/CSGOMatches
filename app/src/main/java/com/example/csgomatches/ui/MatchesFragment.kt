@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.csgomatches.data.matches.MatchesRepository
 import com.example.csgomatches.data.matches.service.MatchesRemoteDataSource
@@ -24,6 +25,8 @@ class MatchesFragment : Fragment() {
     }
     private lateinit var binding: FragmentMatchesBinding
 
+    private val adapter = MatchesAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,9 +40,8 @@ class MatchesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = MatchesAdapter()
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+         binding.recyclerView.adapter = adapter
+         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -48,5 +50,27 @@ class MatchesFragment : Fragment() {
                 }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                adapter.loadStateFlow.collectLatest { loadStates ->
+                    if (loadStates.refresh is LoadState.Loading) {
+                        showProgressIndicator()
+                    } else {
+                        hideProgressIndicator()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showProgressIndicator() {
+        binding.recyclerView.visibility = View.INVISIBLE
+        binding.loading.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressIndicator() {
+        binding.loading.visibility = View.INVISIBLE
+        binding.recyclerView.visibility = View.VISIBLE
     }
 }
