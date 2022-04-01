@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -40,9 +41,14 @@ class MatchesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-         binding.recyclerView.adapter = adapter
-         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        observeMatches()
+        observeLoadState()
+    }
+
+    private fun observeMatches() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.matches.collectLatest { matches ->
@@ -50,27 +56,16 @@ class MatchesFragment : Fragment() {
                 }
             }
         }
+    }
 
+    private fun observeLoadState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 adapter.loadStateFlow.collectLatest { loadStates ->
-                    if (loadStates.refresh is LoadState.Loading) {
-                        showProgressIndicator()
-                    } else {
-                        hideProgressIndicator()
-                    }
+                    binding.recyclerView.isVisible = loadStates.refresh !is LoadState.Loading
+                    binding.loading.isVisible = loadStates.refresh is LoadState.Loading
                 }
             }
         }
-    }
-
-    private fun showProgressIndicator() {
-        binding.recyclerView.visibility = View.INVISIBLE
-        binding.loading.visibility = View.VISIBLE
-    }
-
-    private fun hideProgressIndicator() {
-        binding.loading.visibility = View.INVISIBLE
-        binding.recyclerView.visibility = View.VISIBLE
     }
 }
