@@ -76,6 +76,6 @@ class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(
             return context.getString(R.string.match_time_live)
         }
 
-        return formatDate(match.beginAt)
+        return formatDate(match.beginAt, context)
     }
 }

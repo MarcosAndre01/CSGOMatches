@@ -83,7 +83,7 @@ class MatchDetailFragment : Fragment() {
     }
 
     private fun bindMatchInfo(match: Match) {
-        binding.date.text = formatDate(match.beginAt)
+        binding.date.text = formatDate(match.beginAt, requireContext())
 
         binding.firstTeamName.text = match.teams.first.name
         binding.secondTeamName.text = match.teams.second.name
