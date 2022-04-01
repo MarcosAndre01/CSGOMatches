@@ -3,6 +3,7 @@
 Fique por dentro das próximas partidas de CS:GO
 
 ![](screenshots/screenshot_home1.jpg)
+
 ![](screenshots/screenshot_detail1.jpg)
 
 ## Executando
