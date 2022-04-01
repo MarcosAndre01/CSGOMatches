@@ -1,9 +1,9 @@
 # CSTV
 
 Fique por dentro das próximas partidas de CS:GO
-![](screenshots/screenshot_home.jpg)
 
-![](screenshots/screenshot_detail.jpg)
+![](screenshots/screenshot_home1.jpg)
+![](screenshots/screenshot_detail1.jpg)
 
 ## Executando
 Clone o projeto e execute no Android Studio.
