@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.215" />
+        <entry key="app/src/main/res/drawable/arrow_left.xml" value="0.168" />
+        <entry key="app/src/main/res/drawable/ic_arrow_left.xml" value="0.168" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.215" />
         <entry key="app/src/main/res/drawable/line_card_league.xml" value="0.215" />
         <entry key="app/src/main/res/drawable/match_card.xml" value="0.215" />
@@ -11,14 +13,17 @@
         <entry key="app/src/main/res/drawable/match_time_live.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/player_image_card.xml" value="0.2145" />
         <entry key="app/src/main/res/drawable/player_name_card.xml" value="0.2145" />
+        <entry key="app/src/main/res/drawable/right_team_player_card.xml" value="0.168" />
         <entry key="app/src/main/res/layout-v31/match_item.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_match_detail.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/fragment_match_detail.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_matches.xml" value="0.33697916666666666" />
+        <entry key="app/src/main/res/layout/left_team_player_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/match_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/player_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/player_left_team_item.xml" value="0.75" />
         <entry key="app/src/main/res/layout/player_right_team_item.xml" value="1.5" />
+        <entry key="app/src/main/res/layout/right_team_player_item.xml" value="0.3983402489626556" />
       </map>
     </option>
   </component>

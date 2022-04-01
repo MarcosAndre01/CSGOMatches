@@ -13,8 +13,6 @@ import com.example.csgomatches.R
 import com.example.csgomatches.databinding.MatchItemBinding
 import com.example.csgomatches.ui.model.Match
 import com.example.csgomatches.ui.model.MatchStatus
-import java.text.SimpleDateFormat
-import java.util.*
 
 private const val TAG = "MatchAdapter"
 
@@ -47,8 +45,12 @@ class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(
         holder.binding.apply {
             firstTeamName.text = teams.first.name
             secondTeamName.text = teams.second.name
-            teams.first.imageUrl?.let { firstTeamImage.load(it) { placeholder(R.drawable.ic_image_placeholder) } }
-            teams.second.imageUrl?.let { secondTeamImage.load(it) { placeholder(R.drawable.ic_image_placeholder) } }
+
+            val placeholderImage = ContextCompat.getDrawable(context, R.drawable.ic_image_placeholder)
+            firstTeamImage.setImageDrawable(placeholderImage)
+            teams.first.imageUrl?.let { firstTeamImage.load(it) { placeholder(placeholderImage) } }
+            secondTeamImage.setImageDrawable(placeholderImage)
+            teams.second.imageUrl?.let { secondTeamImage.load(it) { placeholder(placeholderImage) } }
 
             leagueSerie.text =
                 context.getString(R.string.league_serie, item.league, item.serie ?: "")
@@ -69,23 +71,10 @@ class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(
     }
 
     private fun getMatchTimeText(match: Match, context: Context): String? {
-        val beginAt = match.beginAt ?: return null
-
         if (match.status == MatchStatus.Running) {
             return context.getString(R.string.match_time_live)
         }
 
-        return SimpleDateFormat("dd.MM HH:mm", Locale.getDefault()).format(beginAt)
-
-//        val closeDate = SimpleDateFormat("EEE HH:mm", Locale.getDefault())
-//        val farDate = SimpleDateFormat("dd.MM HH:mm", Locale.getDefault())
-//
-//        val diff = beginAt.time - Date().time
-//        val days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)
-//        if (days in 0..6) {
-//            Log.d(TAG, "getMatchTimeText: $beginAt")
-//            return closeDate.format(beginAt)
-//        }
-//        return farDate.format(beginAt)
+        return formatDate(match.beginAt)
     }
 }

@@ -5,26 +5,29 @@
     android:id="@+id/player_item"
     android:layout_width="match_parent"
     android:layout_height="58dp"
+    android:layout_marginBottom="16dp"
     android:background="@color/dark_background">
 
     <View
-        android:id="@+id/player_name_card"
+        android:id="@+id/player_card"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="@drawable/player_name_card"
+        android:background="@drawable/right_team_player_card"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <View
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/player_image"
+        android:scaleType="centerInside"
+        app:shapeAppearanceOverlay="@style/player_image_shape"
+        android:src="@color/image_placeholder"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="-3dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/player_image_card"
-        app:layout_constraintEnd_toEndOf="@id/player_name_card"
-        app:layout_constraintTop_toTopOf="@id/player_name_card" />
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toStartOf="@id/player_card"
+        app:layout_constraintTop_toTopOf="@id/player_card" />
 
     <TextView
         android:id="@+id/player_nickname"
@@ -32,8 +35,8 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/player_full_name"
-        app:layout_constraintEnd_toStartOf="@id/player_image"
-        android:layout_marginEnd="16dp"
+        app:layout_constraintStart_toEndOf="@id/player_image"
+        android:layout_marginStart="16dp"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="Nickname" />
 
@@ -44,7 +47,7 @@
         android:textColor="#6C6B7E"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/player_image"
-        app:layout_constraintEnd_toEndOf="@id/player_nickname"
+        app:layout_constraintStart_toStartOf="@id/player_nickname"
         tools:text="Nome Jogador" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

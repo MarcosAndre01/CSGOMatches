@@ -2,6 +2,8 @@ package com.example.csgomatches.data.matches
 
 import android.util.Log
 import androidx.paging.*
+import com.example.csgomatches.data.PAGE_SIZE
+import com.example.csgomatches.data.imageUrlAsThumb
 import com.example.csgomatches.data.matches.paging.MatchesPagingSource
 import com.example.csgomatches.data.matches.service.MatchResponse
 import com.example.csgomatches.data.matches.service.MatchesRemoteDataSource
@@ -14,7 +16,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 private const val TAG = "MatchesRepository"
-private const val PAGE_SIZE = 50
 
 class MatchesRepository(
     private val matchesRemoteDataSource: MatchesRemoteDataSource,
@@ -70,14 +71,4 @@ class MatchesRepository(
         players = null
     )
 
-    private fun imageUrlAsThumb(defaultImageUrl: String?): String? {
-        if (defaultImageUrl == null) {
-            return null
-        }
-
-        val url = StringBuilder(defaultImageUrl)
-        val afterLastSlash = url.lastIndexOf("/") + 1
-        url.insert(afterLastSlash, "thumb_")
-        return url.toString()
-    }
 }

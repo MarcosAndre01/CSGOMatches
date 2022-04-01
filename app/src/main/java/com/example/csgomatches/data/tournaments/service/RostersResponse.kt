@@ -46,7 +46,7 @@ data class RostersResponse(
             @SerializedName("birthday")
             val birthday: String?,
             @SerializedName("first_name")
-            val firstName: String,
+            val firstName: String?,
             @SerializedName("hometown")
             val hometown: String,
             @SerializedName("id")
@@ -54,7 +54,7 @@ data class RostersResponse(
             @SerializedName("image_url")
             val imageUrl: Any?,
             @SerializedName("last_name")
-            val lastName: String,
+            val lastName: String?,
             @SerializedName("name")
             val name: String,
             @SerializedName("nationality")

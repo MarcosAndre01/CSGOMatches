@@ -4,5 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="vs">vs</string>
     <string name="league_serie">%s %s</string>
+    <string name="player_full_name">%s %s</string>
     <string name="match_time_live">Agora</string>
 </resources>
