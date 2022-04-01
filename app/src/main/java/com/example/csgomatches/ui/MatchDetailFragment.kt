@@ -29,13 +29,7 @@ class MatchDetailFragment : Fragment() {
 
     private val leftTeamAdapter = LeftTeamAdapter()
     private val rightTeamAdapter = RightTeamAdapter()
-
-    init {
-        viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
-            bindMatchInfo(uiState.match)
-        }
-    }
-
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -55,6 +49,10 @@ class MatchDetailFragment : Fragment() {
             findNavController().navigateUp()
         }
         bindRecyclerViews()
+
+        viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
+            bindMatchInfo(uiState.match)
+        }
     }
 
     private fun bindRecyclerViews() {
