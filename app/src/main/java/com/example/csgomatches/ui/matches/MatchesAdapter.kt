@@ -1,4 +1,4 @@
-package com.example.csgomatches.ui
+package com.example.csgomatches.ui.matches
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.csgomatches.R
 import com.example.csgomatches.databinding.MatchItemBinding
+import com.example.csgomatches.ui.formatDate
 import com.example.csgomatches.ui.model.Match
 import com.example.csgomatches.ui.model.MatchStatus
 

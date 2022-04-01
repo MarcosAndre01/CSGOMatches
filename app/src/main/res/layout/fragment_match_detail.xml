@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MatchDetailFragment">
+    tools:context=".ui.match_detail.MatchDetailFragment">
 
     <ImageButton
         android:id="@+id/back_arrow"

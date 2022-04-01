@@ -1,4 +1,4 @@
-package com.example.csgomatches.ui
+package com.example.csgomatches.ui.matches
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

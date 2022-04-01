@@ -10,5 +10,6 @@
     <color name="dark_background">#FF161621</color>
     <color name="dark_card_surface">#FF272639</color>
     <color name="image_placeholder">#C4C4C4</color>
-    <color name="red">#F42A35</color>
+    <color name="match_time">#33FAFAFA</color>
+    <color name="match_time_live">#F42A35</color>
 </resources>

@@ -7,7 +7,7 @@
         android:layout_width="312dp"
         android:layout_height="176dp" />
     <solid
-        android:color="#272639" />
+        android:color="@color/dark_card_surface" />
     <stroke
         android:width="0dp" />
 

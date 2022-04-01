@@ -1,4 +1,4 @@
-package com.example.csgomatches.ui
+package com.example.csgomatches.ui.matches
 
 import android.os.Bundle
 import android.view.LayoutInflater

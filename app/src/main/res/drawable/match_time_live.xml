@@ -8,7 +8,7 @@
         android:layout_width="55dp"
         android:layout_height="25dp" />
     <solid
-        android:color="@color/red" />
+        android:color="@color/match_time_live" />
     <stroke
         android:width="0dp" />
 

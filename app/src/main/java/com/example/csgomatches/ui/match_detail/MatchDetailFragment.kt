@@ -1,4 +1,4 @@
-package com.example.csgomatches.ui
+package com.example.csgomatches.ui.match_detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +16,7 @@ import com.example.csgomatches.R
 import com.example.csgomatches.data.tournaments.TournamentsRepository
 import com.example.csgomatches.data.tournaments.service.TournamentsRemoteDataSource
 import com.example.csgomatches.databinding.FragmentMatchDetailBinding
+import com.example.csgomatches.ui.formatDate
 import com.example.csgomatches.ui.model.Match
 
 private const val TAG = "MatchDetailFragment"
