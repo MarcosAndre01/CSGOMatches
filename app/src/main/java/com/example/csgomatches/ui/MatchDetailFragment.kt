@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -45,14 +47,30 @@ class MatchDetailFragment : Fragment() {
 
         viewModel.selectedMatch(args.selectedMatch)
 
+        bindHeader(args.selectedMatch)
+        bindRecyclerViews()
+
+        observeUiState()
+    }
+
+    private fun observeUiState() {
+        viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
+            if (uiState.isLoading) {
+                showLoadingIndicator()
+            } else {
+                bindMatchInfo(uiState.match)
+                uiState.errorMessage?.let { Toast.makeText(context, it, Toast.LENGTH_LONG).show() }
+                hideLoadingIndicator()
+            }
+        }
+    }
+
+    private fun bindHeader(match: Match) {
         binding.backArrow.setOnClickListener {
             findNavController().navigateUp()
         }
-        bindRecyclerViews()
-
-        viewModel.uiState.observe(viewLifecycleOwner) { uiState ->
-            bindMatchInfo(uiState.match)
-        }
+        binding.leagueSerieTitle.text =
+            getString(R.string.league_serie, match.league, match.serie ?: "")
     }
 
     private fun bindRecyclerViews() {
@@ -64,8 +82,6 @@ class MatchDetailFragment : Fragment() {
     }
 
     private fun bindMatchInfo(match: Match) {
-        binding.leagueSerieTitle.text =
-            getString(R.string.league_serie, match.league, match.serie ?: "")
         binding.date.text = formatDate(match.beginAt)
 
         binding.firstTeamName.text = match.teams.first.name
@@ -87,6 +103,16 @@ class MatchDetailFragment : Fragment() {
         if (rightTeamPlayers != null) {
             rightTeamAdapter.players = rightTeamPlayers
         }
+    }
+
+    private fun showLoadingIndicator() {
+        binding.loading.isVisible = true
+        binding.matchInfo.isVisible = false
+    }
+
+    private fun hideLoadingIndicator() {
+        binding.matchInfo.isVisible = true
+        binding.loading.isVisible = false
     }
 
 }

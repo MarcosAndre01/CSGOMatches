@@ -11,17 +11,17 @@ class MatchesPagingSource(private val service: MatchesRemoteDataSource) :
     PagingSource<Int, MatchResponse>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MatchResponse> {
         val page = params.key ?: 1
-        val response = service.getMatches(page)
         return try {
+            val response = service.getMatches(page)
             LoadResult.Page(
                 data = response,
                 prevKey = page - 1,
                 nextKey = if (response.isEmpty()) null else page + 1
             )
         } catch (exception: IOException) {
-            LoadResult.Error(exception)
+            return LoadResult.Error(exception)
         } catch (exception: HttpException) {
-            LoadResult.Error(exception)
+            return LoadResult.Error(exception)
         }
     }
 

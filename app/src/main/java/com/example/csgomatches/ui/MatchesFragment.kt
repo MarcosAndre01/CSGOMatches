@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -64,6 +65,12 @@ class MatchesFragment : Fragment() {
                 adapter.loadStateFlow.collectLatest { loadStates ->
                     binding.recyclerView.isVisible = loadStates.refresh !is LoadState.Loading
                     binding.loading.isVisible = loadStates.refresh is LoadState.Loading
+
+                    if (loadStates.refresh is LoadState.Error) {
+                        val error = (loadStates.refresh as LoadState.Error).error
+
+                        Toast.makeText(context, error.localizedMessage, Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         }
