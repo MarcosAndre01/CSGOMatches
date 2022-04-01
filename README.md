@@ -10,7 +10,7 @@ Clone o projeto e execute no Android Studio.
 ```
 git clone https://github.com/MarcosAndre01/CSGOMatches
 ```
-Lembre-se de não rolar muito a lista para não esgotar os dados da API kkkkk
+Lembre-se de não rolar muito a lista para não esgotar o uso da API kkkkk
 
 ## Detalhes do projeto
 
