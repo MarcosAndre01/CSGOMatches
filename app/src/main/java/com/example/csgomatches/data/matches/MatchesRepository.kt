@@ -43,7 +43,8 @@ class MatchesRepository(
     )
 
     private fun formatDate(date: String): Date? {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+        dateFormat.timeZone = TimeZone.getTimeZone("UTC")
         return dateFormat.parse(date)
     }
 
