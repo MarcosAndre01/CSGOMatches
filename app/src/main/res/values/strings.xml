@@ -5,5 +5,13 @@
     <string name="player_full_name">%s %s</string>
     <string name="match_time_live">Agora</string>
     <string name="matches">Partidas</string>
-    <string name="today">Hoje</string>
+    <string name="today">Hoje, %s</string>
+    <string name="sunday">Dom, %s</string>
+    <string name="monday">Seg, %s</string>
+    <string name="tuesday">Ter, %s</string>
+    <string name="wednesday">Qua, %s</string>
+    <string name="thursday">Qui, %s</string>
+    <string name="friday">Sex, %s</string>
+    <string name="saturday">Sab, %s</string>
+    <string name="match_date">%s %s</string>
 </resources>

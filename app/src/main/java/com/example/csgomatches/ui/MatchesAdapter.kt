@@ -14,8 +14,6 @@ import com.example.csgomatches.databinding.MatchItemBinding
 import com.example.csgomatches.ui.model.Match
 import com.example.csgomatches.ui.model.MatchStatus
 
-private const val TAG = "MatchAdapter"
-
 class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(DiffCallback) {
     class MatchViewHolder(val binding: MatchItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -46,7 +44,8 @@ class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(
             firstTeamName.text = teams.first.name
             secondTeamName.text = teams.second.name
 
-            val placeholderImage = ContextCompat.getDrawable(context, R.drawable.ic_image_placeholder)
+            val placeholderImage =
+                ContextCompat.getDrawable(context, R.drawable.ic_image_placeholder)
             firstTeamImage.setImageDrawable(placeholderImage)
             teams.first.imageUrl?.let { firstTeamImage.load(it) { placeholder(placeholderImage) } }
             secondTeamImage.setImageDrawable(placeholderImage)
@@ -55,7 +54,13 @@ class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(
             leagueSerie.text =
                 context.getString(R.string.league_serie, item.league, item.serie ?: "")
 
-            matchTimeText.text = getMatchTimeText(item, context)
+            matchTimeText.text =
+                if (item.status == MatchStatus.Running) {
+                    context.getString(R.string.match_time_live)
+                } else {
+                    item.beginAt?.asString(context)
+                }
+
             if (item.status == MatchStatus.Running) {
                 matchTime.background =
                     ContextCompat.getDrawable(context, R.drawable.match_time_live)
@@ -63,9 +68,11 @@ class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(
                 matchTime.background =
                     ContextCompat.getDrawable(context, R.drawable.match_time)
             }
-            
+
             matchCard.setOnClickListener {
-               Navigation.findNavController(holder.itemView).navigate(MatchesFragmentDirections.actionMatchesFragmentToMatchDetailFragment(item))
+                Navigation.findNavController(holder.itemView).navigate(
+                    MatchesFragmentDirections.actionMatchesFragmentToMatchDetailFragment(item)
+                )
             }
         }
     }
@@ -75,6 +82,6 @@ class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(
             return context.getString(R.string.match_time_live)
         }
 
-        return formatDate(match.beginAt, context)
+        return match.beginAt?.asString(context)
     }
 }

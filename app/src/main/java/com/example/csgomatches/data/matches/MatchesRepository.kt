@@ -2,23 +2,27 @@ package com.example.csgomatches.data.matches
 
 import android.util.Log
 import androidx.paging.*
+import com.example.csgomatches.R
 import com.example.csgomatches.data.PAGE_SIZE
 import com.example.csgomatches.data.imageUrlAsThumb
 import com.example.csgomatches.data.matches.paging.MatchesPagingSource
 import com.example.csgomatches.data.matches.service.MatchResponse
 import com.example.csgomatches.data.matches.service.MatchesRemoteDataSource
-import com.example.csgomatches.ui.formatDate
 import com.example.csgomatches.ui.model.Match
 import com.example.csgomatches.ui.model.MatchStatus
 import com.example.csgomatches.ui.model.Team
+import com.example.csgomatches.ui.model.UiText
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
-import java.text.SimpleDateFormat
-import java.util.*
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 private const val TAG = "MatchesRepository"
 
@@ -49,10 +53,30 @@ class MatchesRepository(
         tournamentId = tournamentId
     )
 
-    private fun formatDate(date: String): Date? {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-        dateFormat.timeZone = TimeZone.getTimeZone("UTC")
-        return dateFormat.parse(date)
+    private fun formatDate(beginAt: String?): UiText? {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+            .withZone(ZoneOffset.UTC)
+        val date = beginAt?.let { LocalDateTime.parse(beginAt, formatter) } ?: return null
+        val hours = date.format(DateTimeFormatter.ofPattern("HH:mm"))
+
+        if (date.toLocalDate() == LocalDate.now()) {
+            return UiText(R.string.today, hours)
+        }
+
+        if (ChronoUnit.DAYS.between(date.toLocalDate(), LocalDate.now()) in 1..6) {
+            return UiText(R.string.today, hours)
+        }
+
+        return when (date.dayOfWeek) {
+            DayOfWeek.SUNDAY -> UiText(R.string.sunday, hours)
+            DayOfWeek.MONDAY -> UiText(R.string.monday, hours)
+            DayOfWeek.TUESDAY -> UiText(R.string.tuesday, hours)
+            DayOfWeek.WEDNESDAY -> UiText(R.string.wednesday, hours)
+            DayOfWeek.THURSDAY -> UiText(R.string.thursday, hours)
+            DayOfWeek.FRIDAY -> UiText(R.string.friday, hours)
+            DayOfWeek.SATURDAY -> UiText(R.string.saturday, hours)
+            null -> null
+        }
     }
 
     private fun getMatchStatus(match: MatchResponse): MatchStatus =
