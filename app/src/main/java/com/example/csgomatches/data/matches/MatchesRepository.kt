@@ -7,11 +7,16 @@ import com.example.csgomatches.data.imageUrlAsThumb
 import com.example.csgomatches.data.matches.paging.MatchesPagingSource
 import com.example.csgomatches.data.matches.service.MatchResponse
 import com.example.csgomatches.data.matches.service.MatchesRemoteDataSource
+import com.example.csgomatches.ui.formatDate
 import com.example.csgomatches.ui.model.Match
 import com.example.csgomatches.ui.model.MatchStatus
 import com.example.csgomatches.ui.model.Team
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -19,18 +24,20 @@ private const val TAG = "MatchesRepository"
 
 class MatchesRepository(
     private val matchesRemoteDataSource: MatchesRemoteDataSource,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Default
 ) {
     fun getMatches(): Flow<PagingData<Match>> = Pager(
         config = PagingConfig(pageSize = PAGE_SIZE)
     ) {
         MatchesPagingSource(matchesRemoteDataSource)
-    }.flow.map { pagingData ->
-        pagingData.filter { matchResponse ->
-            matchResponse.opponents.size == 2
-        }.map { matchResponse ->
-            matchResponse.toMatch()
-        }
-    }
+    }.flow
+        .map { pagingData ->
+            pagingData.filter { matchResponse ->
+                matchResponse.opponents.size == 2
+            }.map { matchResponse ->
+                matchResponse.toMatch()
+            }
+        }.flowOn(dispatcher)
 
     private fun MatchResponse.toMatch(): Match = Match(
         id = id,
