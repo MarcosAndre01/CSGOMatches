@@ -1,6 +1,5 @@
 package com.example.csgomatches.ui
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -9,6 +8,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.csgomatches.R
 import com.example.csgomatches.databinding.MatchItemBinding
 import com.example.csgomatches.ui.model.Match
@@ -44,12 +44,16 @@ class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(
             firstTeamName.text = teams.first.name
             secondTeamName.text = teams.second.name
 
-            val placeholderImage =
-                ContextCompat.getDrawable(context, R.drawable.ic_image_placeholder)
-            firstTeamImage.setImageDrawable(placeholderImage)
-            teams.first.imageUrl?.let { firstTeamImage.load(it) { placeholder(placeholderImage) } }
-            secondTeamImage.setImageDrawable(placeholderImage)
-            teams.second.imageUrl?.let { secondTeamImage.load(it) { placeholder(placeholderImage) } }
+            teams.first.imageUrl?.let {
+                firstTeamImage.load(it) {
+                    transformations(CircleCropTransformation())
+                }
+            }
+            teams.second.imageUrl?.let {
+                secondTeamImage.load(it) {
+                    transformations(CircleCropTransformation())
+                }
+            }
 
             leagueSerie.text =
                 context.getString(R.string.league_serie, item.league, item.serie ?: "")
@@ -77,11 +81,4 @@ class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(
         }
     }
 
-    private fun getMatchTimeText(match: Match, context: Context): String? {
-        if (match.status == MatchStatus.Running) {
-            return context.getString(R.string.match_time_live)
-        }
-
-        return match.beginAt?.asString(context)
-    }
 }

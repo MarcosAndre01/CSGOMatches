@@ -11,32 +11,37 @@
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/match_time_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="25dp" />
+        app:layout_constraintTop_toBottomOf="@id/match_time_text"
+        />
 
     <View
         android:id="@+id/match_time"
-        android:layout_width="55dp"
-        android:layout_height="25dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/match_time"
-        app:layout_constraintBottom_toBottomOf="@id/match_time_guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/match_time_guideline"
+        app:layout_constraintStart_toStartOf="@id/match_time_text"
+        android:layout_marginStart="-4dp"
+        android:layout_marginBottom="-4dp"
+        />
 
     <TextView
         android:id="@+id/match_time_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/match_time"
-        app:layout_constraintEnd_toEndOf="@id/match_time"
-        app:layout_constraintStart_toStartOf="@id/match_time"
-        app:layout_constraintTop_toTopOf="@id/match_time"
+        android:textSize="11sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="Seg, 16:00" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/first_team_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -46,15 +51,14 @@
         app:layout_constraintEnd_toStartOf="@+id/versus"
         app:layout_constraintTop_toBottomOf="@id/match_time_guideline"
         app:layout_constraintVertical_chainStyle="packed"
-        app:shapeAppearanceOverlay="@style/rounded_image_view"
-        android:src="@color/image_placeholder" />
+        android:src="@drawable/ic_image_placeholder" />
 
     <TextView
         android:id="@+id/first_team_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textSize="10sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@id/league_guideline"
         app:layout_constraintEnd_toEndOf="@id/first_team_image"
         app:layout_constraintStart_toStartOf="@id/first_team_image"
@@ -65,7 +69,7 @@
         android:id="@+id/versus"
         android:text="@string/vs"
         android:textColor="#80FFFFFF"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/league_guideline"
@@ -73,7 +77,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/match_time_guideline" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/second_team_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -83,15 +87,14 @@
         app:layout_constraintStart_toEndOf="@+id/versus"
         app:layout_constraintTop_toBottomOf="@id/match_time_guideline"
         app:layout_constraintVertical_chainStyle="packed"
-        app:shapeAppearanceOverlay="@style/rounded_image_view"
-        android:src="@color/image_placeholder" />
+        android:src="@drawable/ic_image_placeholder" />
 
     <TextView
         android:id="@+id/second_team_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textSize="10sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@id/league_guideline"
         app:layout_constraintEnd_toEndOf="@id/second_team_image"
         app:layout_constraintStart_toStartOf="@id/second_team_image"
@@ -118,7 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:textSize="8sp"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/league_guideline"

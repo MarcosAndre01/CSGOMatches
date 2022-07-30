@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<color xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/image_placeholder">
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval" >
 
-</color>
+    <solid android:color="@color/image_placeholder" />
+
+</shape>
