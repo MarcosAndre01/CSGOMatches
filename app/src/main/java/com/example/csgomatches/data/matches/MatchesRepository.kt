@@ -17,10 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.ZoneOffset
+import java.time.*
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
@@ -30,6 +27,7 @@ class MatchesRepository(
     private val matchesRemoteDataSource: MatchesRemoteDataSource,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Default
 ) {
+
     fun getMatches(): Flow<PagingData<Match>> = Pager(
         config = PagingConfig(pageSize = PAGE_SIZE)
     ) {
@@ -55,15 +53,14 @@ class MatchesRepository(
 
     private fun formatDate(beginAt: String?): UiText? {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
-            .withZone(ZoneOffset.UTC)
-        val date = beginAt?.let { LocalDateTime.parse(beginAt, formatter) } ?: return null
-        val hours = date.format(DateTimeFormatter.ofPattern("HH:mm"))
+        val date = beginAt?.let { LocalDateTime.parse(beginAt, formatter).atZone(ZoneOffset.UTC) } ?: return null
+        val hours = date.format(DateTimeFormatter.ofPattern("HH:mm").withZone(ZoneId.systemDefault()))
 
         if (date.toLocalDate() == LocalDate.now()) {
             return UiText(R.string.today, hours)
         }
 
-        if (ChronoUnit.DAYS.between(date.toLocalDate(), LocalDate.now()) in 1..6) {
+        if (ChronoUnit.DAYS.between(date, ZonedDateTime.now()) in 1..6) {
             return UiText(R.string.today, hours)
         }
 
