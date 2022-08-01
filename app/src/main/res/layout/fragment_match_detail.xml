@@ -54,14 +54,15 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/match_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/space">
+        app:layout_constraintTop_toBottomOf="@id/space"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/date"
@@ -80,12 +81,11 @@
                 android:layout_height="60dp"
                 android:layout_marginEnd="20dp"
                 android:scaleType="centerInside"
-                android:src="@color/image_placeholder"
+                android:src="@drawable/team_image_placeholder"
                 app:layout_constraintBottom_toTopOf="@id/first_team_name"
                 app:layout_constraintEnd_toStartOf="@+id/versus"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:shapeAppearanceOverlay="@style/rounded_image_view" />
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/first_team_name"
@@ -117,12 +117,11 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
                 android:scaleType="centerInside"
-                android:src="@color/image_placeholder"
+                android:src="@drawable/team_image_placeholder"
                 app:layout_constraintBottom_toTopOf="@id/second_team_name"
                 app:layout_constraintStart_toEndOf="@+id/versus"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:shapeAppearanceOverlay="@style/rounded_image_view" />
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/second_team_name"
@@ -139,24 +138,26 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/left_team_list"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="7dp"
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintEnd_toStartOf="@id/right_team_list"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/date" />
+                app:layout_constraintTop_toBottomOf="@id/date"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/right_team_list"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="20dp"
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/left_team_list"
-                app:layout_constraintTop_toBottomOf="@id/date" />
+                app:layout_constraintTop_toBottomOf="@id/date"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

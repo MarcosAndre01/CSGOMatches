@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="rounded_image_view">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
-    </style>
-
-    <style name="player_image_shape">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">8dp</item>
-    </style>
 
     <style name="Widget.App.CircularProgressIndicator"
         parent="Widget.MaterialComponents.CircularProgressIndicator">

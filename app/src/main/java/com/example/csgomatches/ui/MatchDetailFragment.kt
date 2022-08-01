@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.csgomatches.R
 import com.example.csgomatches.data.tournaments.TournamentsRepository
 import com.example.csgomatches.data.tournaments.service.TournamentsRemoteDataSource
@@ -36,7 +37,7 @@ class MatchDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMatchDetailBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -87,8 +88,18 @@ class MatchDetailFragment : Fragment() {
         binding.firstTeamName.text = match.teams.first.name
         binding.secondTeamName.text = match.teams.second.name
 
-        match.teams.first.imageUrl?.let { binding.firstTeamImage.load(it) { placeholder(R.drawable.ic_image_placeholder) } }
-        match.teams.second.imageUrl?.let { binding.secondTeamImage.load(it) { placeholder(R.drawable.ic_image_placeholder) } }
+        match.teams.first.imageUrl?.let {
+            binding.firstTeamImage.load(it) {
+                placeholder(R.drawable.team_image_placeholder)
+                transformations(CircleCropTransformation())
+            }
+        }
+        match.teams.second.imageUrl?.let {
+            binding.secondTeamImage.load(it) {
+                placeholder(R.drawable.team_image_placeholder)
+                transformations(CircleCropTransformation())
+            }
+        }
 
         updateAdapters(match)
     }

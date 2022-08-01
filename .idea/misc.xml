@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.215" />
         <entry key="app/src/main/res/drawable/arrow_left.xml" value="0.168" />
         <entry key="app/src/main/res/drawable/ic_arrow_left.xml" value="0.168" />
+        <entry key="app/src/main/res/drawable/ic_image_placeholder.xml" value="0.163" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.215" />
         <entry key="app/src/main/res/drawable/left_team_player_card.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/line_card_league.xml" value="0.215" />
@@ -13,6 +14,7 @@
         <entry key="app/src/main/res/drawable/match_time.xml" value="0.215" />
         <entry key="app/src/main/res/drawable/match_time_live.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/player_image_card.xml" value="0.2145" />
+        <entry key="app/src/main/res/drawable/player_image_placeholder.xml" value="0.163" />
         <entry key="app/src/main/res/drawable/player_name_card.xml" value="0.2145" />
         <entry key="app/src/main/res/drawable/right_team_player_card.xml" value="0.168" />
         <entry key="app/src/main/res/layout-v31/match_item.xml" value="0.35260416666666666" />

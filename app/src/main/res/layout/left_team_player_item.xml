@@ -17,11 +17,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/player_image"
         android:scaleType="centerInside"
-        app:shapeAppearanceOverlay="@style/player_image_shape"
-        android:src="@color/image_placeholder"
+        android:src="@drawable/player_image_placeholder"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="-3dp"

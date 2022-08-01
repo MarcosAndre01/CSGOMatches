@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.example.csgomatches.data.matches.MatchesRepository
 
-class MatchesViewModel(private val matchesRepository: MatchesRepository) : ViewModel() {
+class MatchesViewModel(matchesRepository: MatchesRepository) : ViewModel() {
     val matches = matchesRepository.getMatches().cachedIn(viewModelScope)
 
     class Factory(private val matchesRepository: MatchesRepository) : ViewModelProvider.Factory {

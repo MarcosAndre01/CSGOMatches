@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.CircleCropTransformation
+import coil.transform.RoundedCornersTransformation
 import com.example.csgomatches.R
 import com.example.csgomatches.databinding.LeftTeamPlayerItemBinding
 import com.example.csgomatches.ui.model.Player
@@ -48,14 +50,17 @@ class LeftTeamAdapter : RecyclerView.Adapter<LeftTeamAdapter.LeftPlayerViewHolde
 
     override fun onBindViewHolder(holder: LeftPlayerViewHolder, position: Int) {
         val player = players[position]
-        val placeholderImage = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_image_placeholder)
+        val placeholderImage = ContextCompat.getDrawable(holder.itemView.context, R.drawable.player_image_placeholder)
 
         holder.binding.apply {
             playerNickname.text = player.nickname
             playerFullName.text = player.name
             playerImage.setImageDrawable(placeholderImage)
             if (player.imageUrl != null) {
-                playerImage.load(player.imageUrl) { placeholder(placeholderImage) }
+                playerImage.load(player.imageUrl) {
+                    placeholder(placeholderImage)
+                    transformations(RoundedCornersTransformation(8f))
+                }
             }
         }
     }

@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toStartOf="@+id/versus"
         app:layout_constraintTop_toBottomOf="@id/match_time_guideline"
         app:layout_constraintVertical_chainStyle="packed"
-        android:src="@drawable/ic_image_placeholder" />
+        android:src="@drawable/team_image_placeholder" />
 
     <TextView
         android:id="@+id/first_team_name"
@@ -87,7 +87,7 @@
         app:layout_constraintStart_toEndOf="@+id/versus"
         app:layout_constraintTop_toBottomOf="@id/match_time_guideline"
         app:layout_constraintVertical_chainStyle="packed"
-        android:src="@drawable/ic_image_placeholder" />
+        android:src="@drawable/team_image_placeholder" />
 
     <TextView
         android:id="@+id/second_team_name"
