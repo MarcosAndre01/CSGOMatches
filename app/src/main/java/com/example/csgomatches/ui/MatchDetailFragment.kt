@@ -18,15 +18,13 @@ import com.example.csgomatches.data.tournaments.TournamentsRepository
 import com.example.csgomatches.data.tournaments.service.TournamentsRemoteDataSource
 import com.example.csgomatches.databinding.FragmentMatchDetailBinding
 import com.example.csgomatches.ui.model.Match
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "MatchDetailFragment"
 
+@AndroidEntryPoint
 class MatchDetailFragment : Fragment() {
-    private val viewModel: MatchDetailViewModel by viewModels {
-        MatchDetailViewModel.Factory(
-            TournamentsRepository(TournamentsRemoteDataSource)
-        )
-    }
+    private val viewModel by viewModels<MatchDetailViewModel>()
     private lateinit var binding: FragmentMatchDetailBinding
     private val args by navArgs<MatchDetailFragmentArgs>()
 

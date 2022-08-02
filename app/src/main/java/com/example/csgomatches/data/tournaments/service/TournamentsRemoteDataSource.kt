@@ -9,18 +9,8 @@ import retrofit2.http.Path
 
 private const val TAG = "TournamentsService"
 
-object TournamentsRemoteDataSource {
-    suspend fun getRosters(tournamentId: Int): RostersResponse {
-        Log.d(TAG, "getRosters: tournamentId: $tournamentId")
-        return tournamentsService.getRosters(tournamentId)
-    }
-}
 
-private val tournamentsService: TournamentsService by lazy {
-    retrofit.create(TournamentsService::class.java)
-}
-
-private interface TournamentsService {
+interface TournamentsRemoteDataSource {
     @GET("tournaments/{tournamentId}/rosters")
     suspend fun getRosters(
         @Path("tournamentId") tournamentId: Int,

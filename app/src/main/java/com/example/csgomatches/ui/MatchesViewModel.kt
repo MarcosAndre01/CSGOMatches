@@ -5,15 +5,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.example.csgomatches.data.matches.MatchesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MatchesViewModel(matchesRepository: MatchesRepository) : ViewModel() {
+@HiltViewModel
+class MatchesViewModel @Inject constructor(matchesRepository: MatchesRepository) : ViewModel() {
     val matches = matchesRepository.getMatches().cachedIn(viewModelScope)
-
-    class Factory(private val matchesRepository: MatchesRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MatchesViewModel(matchesRepository) as T
-        }
-    }
 }
 
 

@@ -16,15 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.csgomatches.data.matches.MatchesRepository
 import com.example.csgomatches.data.matches.service.MatchesRemoteDataSource
 import com.example.csgomatches.databinding.FragmentMatchesBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MatchesFragment : Fragment() {
-    private val viewModel: MatchesViewModel by viewModels {
-        MatchesViewModel.Factory(
-            MatchesRepository(MatchesRemoteDataSource)
-        )
-    }
+    private val viewModel by viewModels<MatchesViewModel>()
+
     private lateinit var binding: FragmentMatchesBinding
 
     private val adapter = MatchesAdapter()

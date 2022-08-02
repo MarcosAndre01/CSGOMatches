@@ -4,11 +4,14 @@ import androidx.lifecycle.*
 import com.example.csgomatches.data.tournaments.TournamentsRepository
 import com.example.csgomatches.ui.model.Match
 import com.example.csgomatches.ui.model.MatchDetailUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
-class MatchDetailViewModel(private val tournamentsRepository: TournamentsRepository) : ViewModel() {
+@HiltViewModel
+class MatchDetailViewModel @Inject constructor(private val tournamentsRepository: TournamentsRepository) : ViewModel() {
     private val _uiState: MutableLiveData<MatchDetailUiState> = MutableLiveData()
     val uiState: LiveData<MatchDetailUiState>
         get() = _uiState
@@ -47,10 +50,4 @@ class MatchDetailViewModel(private val tournamentsRepository: TournamentsReposit
         )
     }
 
-    class Factory(private val tournamentsRepository: TournamentsRepository) :
-        ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return MatchDetailViewModel(tournamentsRepository) as T
-        }
-    }
 }

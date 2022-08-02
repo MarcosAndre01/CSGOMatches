@@ -5,10 +5,11 @@ import com.example.csgomatches.data.tournaments.service.RostersResponse
 import com.example.csgomatches.data.tournaments.service.TournamentsRemoteDataSource
 import com.example.csgomatches.ui.model.Match
 import com.example.csgomatches.ui.model.Player
+import javax.inject.Inject
 
 private const val TAG = "TournamentsRepository"
 
-class TournamentsRepository(private val tournamentsRemoteDataSource: TournamentsRemoteDataSource) {
+class TournamentsRepository @Inject constructor(private val tournamentsRemoteDataSource: TournamentsRemoteDataSource) {
     suspend fun getRostersForMatch(match: Match): Pair<List<Player>, List<Player>>? {
         val rosters = tournamentsRemoteDataSource.getRosters(match.tournamentId)
             .rosters.filter { roster ->

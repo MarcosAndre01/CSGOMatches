@@ -20,10 +20,11 @@ import kotlinx.coroutines.flow.map
 import java.time.*
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
+import javax.inject.Inject
 
 private const val TAG = "MatchesRepository"
 
-class MatchesRepository(
+class MatchesRepository @Inject constructor(
     private val matchesRemoteDataSource: MatchesRemoteDataSource,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Default
 ) {
@@ -60,7 +61,7 @@ class MatchesRepository(
             return UiText(R.string.today, hours)
         }
 
-        if (ChronoUnit.DAYS.between(date, ZonedDateTime.now()) in 1..6) {
+        if (ChronoUnit.DAYS.between(date.toLocalDate(), LocalDate.now()) in 1..6) {
             return UiText(R.string.today, hours)
         }
 
