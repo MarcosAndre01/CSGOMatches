@@ -22,7 +22,6 @@ class MatchesFragment : Fragment() {
     private val viewModel by viewModels<MatchesViewModel>()
 
     private lateinit var binding: FragmentMatchesBinding
-
     private val adapter = MatchesAdapter()
 
     override fun onCreateView(
@@ -40,6 +39,9 @@ class MatchesFragment : Fragment() {
 
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.refresh.setOnRefreshListener {
+            adapter.refresh()
+        }
 
         observeMatches()
         observeLoadState()
@@ -56,8 +58,11 @@ class MatchesFragment : Fragment() {
     private fun observeLoadState() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             adapter.loadStateFlow.collectLatest { loadStates ->
-                // binding.recyclerView.isVisible = loadStates.refresh !is LoadState.Loading
-                binding.loading.isVisible = loadStates.refresh is LoadState.Loading
+                binding.loading.isVisible =
+                    loadStates.refresh is LoadState.Loading && adapter.itemCount < 1
+
+                binding.refresh.isRefreshing =
+                    loadStates.refresh is LoadState.Loading && adapter.itemCount >= 1
 
                 if (loadStates.refresh is LoadState.Error) {
                     val error = (loadStates.refresh as LoadState.Error).error

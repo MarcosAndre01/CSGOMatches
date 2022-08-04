@@ -16,7 +16,7 @@ import java.time.temporal.ChronoUnit
 private val TAG = "MatchMapper"
 
 fun MatchEntity.toMatch(): Match = Match(
-    id = id,
+    id = remoteId,
     status = getMatchStatus(status),
     beginAt = beginAt?.let { formatDate(it) },
     firstTeam = Team(
