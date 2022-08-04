@@ -1,4 +1,4 @@
-package com.example.csgomatches.ui
+package com.example.csgomatches.detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,14 +7,13 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
 import com.example.csgomatches.R
-import com.example.csgomatches.databinding.RightTeamPlayerItemBinding
-import com.example.csgomatches.ui.model.Player
+import com.example.csgomatches.databinding.LeftTeamPlayerItemBinding
+import com.example.csgomatches.model.Player
 
-class RightTeamAdapter : RecyclerView.Adapter<RightTeamAdapter.RightPlayerViewHolder>() {
-    class RightPlayerViewHolder(val binding: RightTeamPlayerItemBinding) :
+class LeftTeamAdapter : RecyclerView.Adapter<LeftTeamAdapter.LeftPlayerViewHolder>() {
+    class LeftPlayerViewHolder(val binding: LeftTeamPlayerItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Player>() {
@@ -38,9 +37,9 @@ class RightTeamAdapter : RecyclerView.Adapter<RightTeamAdapter.RightPlayerViewHo
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RightPlayerViewHolder {
-        return RightPlayerViewHolder(
-            RightTeamPlayerItemBinding.inflate(
+    ): LeftPlayerViewHolder {
+        return LeftPlayerViewHolder(
+            LeftTeamPlayerItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -48,9 +47,11 @@ class RightTeamAdapter : RecyclerView.Adapter<RightTeamAdapter.RightPlayerViewHo
         )
     }
 
-    override fun onBindViewHolder(holder: RightPlayerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: LeftPlayerViewHolder, position: Int) {
         val player = players[position]
-        val placeholderImage = ContextCompat.getDrawable(holder.itemView.context, R.drawable.player_image_placeholder)
+        val placeholderImage = ContextCompat.getDrawable(holder.itemView.context,
+            R.drawable.player_image_placeholder
+        )
 
         holder.binding.apply {
             playerNickname.text = player.nickname

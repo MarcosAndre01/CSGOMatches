@@ -1,4 +1,4 @@
-package com.example.csgomatches.db
+package com.example.csgomatches.data.matches.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

@@ -1,4 +1,4 @@
-package com.example.csgomatches.ui
+package com.example.csgomatches.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.example.csgomatches.R
 import com.example.csgomatches.databinding.FragmentMatchDetailBinding
-import com.example.csgomatches.ui.model.Match
+import com.example.csgomatches.model.Match
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "MatchDetailFragment"

@@ -1,4 +1,4 @@
-package com.example.csgomatches.ui.model
+package com.example.csgomatches.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

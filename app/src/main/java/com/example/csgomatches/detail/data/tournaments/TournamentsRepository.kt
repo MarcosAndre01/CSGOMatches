@@ -1,10 +1,10 @@
-package com.example.csgomatches.data.tournaments
+package com.example.csgomatches.detail.data.tournaments
 
 import com.example.csgomatches.data.imageUrlAsThumb
-import com.example.csgomatches.data.tournaments.service.RostersResponse
-import com.example.csgomatches.data.tournaments.service.TournamentsRemoteDataSource
-import com.example.csgomatches.ui.model.Match
-import com.example.csgomatches.ui.model.Player
+import com.example.csgomatches.detail.data.tournaments.service.RostersResponse
+import com.example.csgomatches.detail.data.tournaments.service.TournamentsRemoteDataSource
+import com.example.csgomatches.model.Match
+import com.example.csgomatches.model.Player
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

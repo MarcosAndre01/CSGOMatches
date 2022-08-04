@@ -5,10 +5,10 @@ import com.example.csgomatches.R
 import com.example.csgomatches.data.imageUrlAsThumb
 import com.example.csgomatches.data.matches.local.MatchEntity
 import com.example.csgomatches.data.matches.remote.MatchResponse
-import com.example.csgomatches.ui.model.Match
-import com.example.csgomatches.ui.model.MatchStatus
-import com.example.csgomatches.ui.model.Team
-import com.example.csgomatches.ui.model.UiText
+import com.example.csgomatches.model.Match
+import com.example.csgomatches.model.MatchStatus
+import com.example.csgomatches.model.Team
+import com.example.csgomatches.model.UiText
 import java.time.*
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit

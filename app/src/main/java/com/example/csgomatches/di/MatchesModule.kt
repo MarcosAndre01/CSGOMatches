@@ -2,13 +2,12 @@ package com.example.csgomatches.di
 
 import android.app.Application
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.csgomatches.data.BASE_URL
 import com.example.csgomatches.data.matches.MatchesRepository
 import com.example.csgomatches.data.matches.remote.MatchesRemoteDataSource
-import com.example.csgomatches.data.tournaments.TournamentsRepository
-import com.example.csgomatches.data.tournaments.service.TournamentsRemoteDataSource
-import com.example.csgomatches.db.MatchesDatabase
+import com.example.csgomatches.detail.data.tournaments.TournamentsRepository
+import com.example.csgomatches.detail.data.tournaments.service.TournamentsRemoteDataSource
+import com.example.csgomatches.data.matches.local.MatchesDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

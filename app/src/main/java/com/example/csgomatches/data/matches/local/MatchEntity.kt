@@ -2,9 +2,6 @@ package com.example.csgomatches.data.matches.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.csgomatches.ui.model.MatchStatus
-import com.example.csgomatches.ui.model.Team
-import com.example.csgomatches.ui.model.UiText
 
 @Entity
 data class MatchEntity(

@@ -1,9 +1,9 @@
-package com.example.csgomatches.ui
+package com.example.csgomatches.detail
 
 import androidx.lifecycle.*
-import com.example.csgomatches.data.tournaments.TournamentsRepository
-import com.example.csgomatches.ui.model.Match
-import com.example.csgomatches.ui.model.MatchDetailUiState
+import com.example.csgomatches.detail.data.tournaments.TournamentsRepository
+import com.example.csgomatches.model.Match
+import com.example.csgomatches.model.MatchDetailUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException

@@ -1,4 +1,4 @@
-package com.example.csgomatches.data.tournaments.service
+package com.example.csgomatches.detail.data.tournaments.service
 
 
 import com.google.gson.annotations.SerializedName

@@ -1,7 +1,6 @@
-package com.example.csgomatches.ui.model
+package com.example.csgomatches.model
 
 import android.os.Parcelable
-import androidx.room.Entity
 import kotlinx.parcelize.Parcelize
 import java.io.Serializable
 

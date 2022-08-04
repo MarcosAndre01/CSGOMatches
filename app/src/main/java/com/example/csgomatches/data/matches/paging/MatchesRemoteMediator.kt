@@ -1,6 +1,5 @@
 package com.example.csgomatches.data.matches.paging
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -10,7 +9,7 @@ import com.example.csgomatches.data.matches.local.MatchEntity
 import com.example.csgomatches.data.matches.local.MatchRemoteKey
 import com.example.csgomatches.data.matches.remote.MatchesRemoteDataSource
 import com.example.csgomatches.data.matches.toEntity
-import com.example.csgomatches.db.MatchesDatabase
+import com.example.csgomatches.data.matches.local.MatchesDatabase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

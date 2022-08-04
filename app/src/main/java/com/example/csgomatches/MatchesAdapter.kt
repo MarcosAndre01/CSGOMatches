@@ -1,4 +1,4 @@
-package com.example.csgomatches.ui
+package com.example.csgomatches
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
-import com.example.csgomatches.R
 import com.example.csgomatches.databinding.MatchItemBinding
-import com.example.csgomatches.ui.model.Match
-import com.example.csgomatches.ui.model.MatchStatus
+import com.example.csgomatches.model.Match
+import com.example.csgomatches.model.MatchStatus
 
 class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(DiffCallback) {
     class MatchViewHolder(val binding: MatchItemBinding) : RecyclerView.ViewHolder(binding.root)
