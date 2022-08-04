@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.example.csgomatches.R
-import com.example.csgomatches.data.tournaments.TournamentsRepository
-import com.example.csgomatches.data.tournaments.service.TournamentsRemoteDataSource
 import com.example.csgomatches.databinding.FragmentMatchDetailBinding
 import com.example.csgomatches.ui.model.Match
 import dagger.hilt.android.AndroidEntryPoint
@@ -83,16 +81,16 @@ class MatchDetailFragment : Fragment() {
     private fun bindMatchInfo(match: Match) {
         binding.date.text = match.beginAt?.asString(requireContext())
 
-        binding.firstTeamName.text = match.teams.first.name
-        binding.secondTeamName.text = match.teams.second.name
+        binding.firstTeamName.text = match.firstTeam.name
+        binding.secondTeamName.text = match.secondTeam.name
 
-        match.teams.first.imageUrl?.let {
+        match.firstTeam.imageUrl?.let {
             binding.firstTeamImage.load(it) {
                 placeholder(R.drawable.team_image_placeholder)
                 transformations(CircleCropTransformation())
             }
         }
-        match.teams.second.imageUrl?.let {
+        match.secondTeam.imageUrl?.let {
             binding.secondTeamImage.load(it) {
                 placeholder(R.drawable.team_image_placeholder)
                 transformations(CircleCropTransformation())
@@ -103,12 +101,12 @@ class MatchDetailFragment : Fragment() {
     }
 
     private fun updateAdapters(match: Match) {
-        val leftTeamPlayers = match.teams.first.players
+        val leftTeamPlayers = match.firstTeam.players
         if (leftTeamPlayers != null) {
             leftTeamAdapter.players = leftTeamPlayers
         }
 
-        val rightTeamPlayers = match.teams.second.players
+        val rightTeamPlayers = match.secondTeam.players
         if (rightTeamPlayers != null) {
             rightTeamAdapter.players = rightTeamPlayers
         }

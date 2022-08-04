@@ -1,8 +1,7 @@
-package com.example.csgomatches.data.matches.service
+package com.example.csgomatches.data.matches.remote
 
 import com.example.csgomatches.data.API_TOKEN
 import com.example.csgomatches.data.PAGE_SIZE
-import com.example.csgomatches.data.retrofit
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query

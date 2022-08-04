@@ -5,30 +5,37 @@ import com.example.csgomatches.data.tournaments.service.RostersResponse
 import com.example.csgomatches.data.tournaments.service.TournamentsRemoteDataSource
 import com.example.csgomatches.ui.model.Match
 import com.example.csgomatches.ui.model.Player
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 private const val TAG = "TournamentsRepository"
 
-class TournamentsRepository @Inject constructor(private val tournamentsRemoteDataSource: TournamentsRemoteDataSource) {
-    suspend fun getRostersForMatch(match: Match): Pair<List<Player>, List<Player>>? {
-        val rosters = tournamentsRemoteDataSource.getRosters(match.tournamentId)
-            .rosters.filter { roster ->
-                roster.id == match.teams.first.id || roster.id == match.teams.second.id
+class TournamentsRepository @Inject constructor(
+    private val tournamentsRemoteDataSource: TournamentsRemoteDataSource,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Default
+) {
+    suspend fun getRostersForMatch(match: Match): Pair<List<Player>, List<Player>>? =
+        withContext(dispatcher) {
+            val rosters = tournamentsRemoteDataSource.getRosters(match.tournamentId)
+                .rosters.filter { roster ->
+                    roster.id == match.firstTeam.id || roster.id == match.secondTeam.id
+                }
+            if (rosters.size != 2) {
+                return@withContext null
             }
-        if (rosters.size != 2) {
-            return null
+
+            val orderedRosters = rosters.filter { roster ->
+                roster.id == match.firstTeam.id
+            }.plus(
+                rosters.filter { roster ->
+                    roster.id == match.secondTeam.id
+                }
+            )
+
+            getPlayers(orderedRosters)
         }
-
-        val orderedRosters = rosters.filter { roster ->
-            roster.id == match.teams.first.id
-        }.plus(
-            rosters.filter { roster ->
-                roster.id == match.teams.second.id
-            }
-        )
-
-        return getPlayers(orderedRosters)
-    }
 
     private fun getPlayers(rostersDto: List<RostersResponse.Roster>): Pair<List<Player>, List<Player>> {
         val rosters: MutableList<List<Player>> = mutableListOf()

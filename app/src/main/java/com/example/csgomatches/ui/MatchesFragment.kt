@@ -1,6 +1,7 @@
 package com.example.csgomatches.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +14,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.csgomatches.data.matches.MatchesRepository
-import com.example.csgomatches.data.matches.service.MatchesRemoteDataSource
 import com.example.csgomatches.databinding.FragmentMatchesBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
+private const val TAG = "MatchesFragment"
 
 @AndroidEntryPoint
 class MatchesFragment : Fragment() {
@@ -49,27 +50,22 @@ class MatchesFragment : Fragment() {
     }
 
     private fun observeMatches() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.matches.collectLatest { matches ->
-                    adapter.submitData(matches)
-                }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.matches.collectLatest { matches ->
+                adapter.submitData(matches)
             }
         }
     }
 
     private fun observeLoadState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                adapter.loadStateFlow.collectLatest { loadStates ->
-                    binding.recyclerView.isVisible = loadStates.refresh !is LoadState.Loading
-                    binding.loading.isVisible = loadStates.refresh is LoadState.Loading
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            adapter.loadStateFlow.collectLatest { loadStates ->
+                // binding.recyclerView.isVisible = loadStates.refresh !is LoadState.Loading
+                binding.loading.isVisible = loadStates.refresh is LoadState.Loading
 
-                    if (loadStates.refresh is LoadState.Error) {
-                        val error = (loadStates.refresh as LoadState.Error).error
-
-                        Toast.makeText(context, error.localizedMessage, Toast.LENGTH_LONG).show()
-                    }
+                if (loadStates.refresh is LoadState.Error) {
+                    val error = (loadStates.refresh as LoadState.Error).error
+                    Toast.makeText(context, error.localizedMessage, Toast.LENGTH_LONG).show()
                 }
             }
         }

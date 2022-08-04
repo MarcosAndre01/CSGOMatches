@@ -1,4 +1,4 @@
-package com.example.csgomatches.data.matches.service
+package com.example.csgomatches.data.matches.remote
 
 import com.google.gson.annotations.SerializedName
 

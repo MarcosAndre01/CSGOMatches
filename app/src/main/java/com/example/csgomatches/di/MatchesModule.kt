@@ -1,10 +1,14 @@
 package com.example.csgomatches.di
 
+import android.app.Application
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.example.csgomatches.data.BASE_URL
 import com.example.csgomatches.data.matches.MatchesRepository
-import com.example.csgomatches.data.matches.service.MatchesRemoteDataSource
+import com.example.csgomatches.data.matches.remote.MatchesRemoteDataSource
 import com.example.csgomatches.data.tournaments.TournamentsRepository
 import com.example.csgomatches.data.tournaments.service.TournamentsRemoteDataSource
+import com.example.csgomatches.db.MatchesDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,8 +31,17 @@ object MatchesModule {
 
     @Provides
     @Singleton
-    fun provideMatchesRepository(matchesRemoteDataSource: MatchesRemoteDataSource): MatchesRepository {
-        return MatchesRepository(matchesRemoteDataSource)
+    fun provideMatchesDatabase(app: Application): MatchesDatabase {
+        return Room.databaseBuilder(app,
+            MatchesDatabase::class.java,
+            "matches.dbdb"
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMatchesRepository(matchesDatabase: MatchesDatabase, matchesRemoteDataSource: MatchesRemoteDataSource): MatchesRepository {
+        return MatchesRepository(matchesDatabase, matchesRemoteDataSource)
     }
 
     @Provides

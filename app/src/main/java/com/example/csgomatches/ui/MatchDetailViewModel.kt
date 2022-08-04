@@ -39,13 +39,11 @@ class MatchDetailViewModel @Inject constructor(private val tournamentsRepository
     private suspend fun fetchPlayersForMatch(match: Match): Match {
         val players = tournamentsRepository.getRostersForMatch(match)
         return match.copy(
-            teams = match.teams.copy(
-                first = match.teams.first.copy(
-                    players = players?.first
-                ),
-                second = match.teams.second.copy(
-                    players = players?.second
-                )
+            firstTeam = match.firstTeam.copy(
+                players = players?.first
+            ),
+            secondTeam = match.secondTeam.copy(
+                players = players?.second
             )
         )
     }

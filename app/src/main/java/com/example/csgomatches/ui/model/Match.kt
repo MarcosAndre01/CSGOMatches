@@ -8,7 +8,8 @@ data class Match(
     val id: Int,
     val status: MatchStatus,
     val beginAt: UiText?,
-    val teams: Pair<Team, Team>,
+    val firstTeam: Team,
+    val secondTeam: Team,
     val league: String,
     val serie: String?,
     val tournamentId: Int

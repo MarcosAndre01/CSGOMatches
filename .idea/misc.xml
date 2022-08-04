@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/drawable/player_image_placeholder.xml" value="0.163" />
         <entry key="app/src/main/res/drawable/player_name_card.xml" value="0.2145" />
         <entry key="app/src/main/res/drawable/right_team_player_card.xml" value="0.168" />
+        <entry key="app/src/main/res/drawable/team_image_placeholder.xml" value="0.1725" />
         <entry key="app/src/main/res/layout-v31/match_item.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_match_detail.xml" value="0.5" />

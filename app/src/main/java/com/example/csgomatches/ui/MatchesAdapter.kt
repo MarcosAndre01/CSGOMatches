@@ -22,7 +22,7 @@ class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(
             oldItem.id == newItem.id
 
         override fun areContentsTheSame(oldItem: Match, newItem: Match): Boolean =
-            oldItem == newItem
+            oldItem.id == newItem.id // TODO override Match.equals correctly and change this
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchViewHolder {
@@ -38,19 +38,21 @@ class MatchesAdapter : PagingDataAdapter<Match, MatchesAdapter.MatchViewHolder>(
     override fun onBindViewHolder(holder: MatchViewHolder, position: Int) {
         val item = getItem(position) ?: return
         val context = holder.itemView.context
-        val teams = item.teams
+        val placeholderImage = ContextCompat.getDrawable(holder.itemView.context, R.drawable.team_image_placeholder)
 
         holder.binding.apply {
-            firstTeamName.text = teams.first.name
-            secondTeamName.text = teams.second.name
+            firstTeamName.text = item.firstTeam.name
+            secondTeamName.text = item.secondTeam.name
 
-            teams.first.imageUrl?.let {
+            item.firstTeam.imageUrl?.let {
                 firstTeamImage.load(it) {
+                    placeholder(placeholderImage)
                     transformations(CircleCropTransformation())
                 }
             }
-            teams.second.imageUrl?.let {
+            item.secondTeam.imageUrl?.let {
                 secondTeamImage.load(it) {
+                    placeholder(placeholderImage)
                     transformations(CircleCropTransformation())
                 }
             }
