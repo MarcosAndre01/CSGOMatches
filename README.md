@@ -1,11 +1,10 @@
 # CSGOMatches
 
+Fique por dentro das próximas partidas de CS:GO!
+
 ![](screenshots/home.jpg)
 
 ![](screenshots/detail.jpg) 
-
-
-Fique por dentro das próximas partidas de CS:GO!
 
 ## Detalhes do projeto
 Essa aplicação foi desenvolvida com a finalidade de praticar conceitos em desenvolvimento Android utilizando a [API pandascore](https://developers.pandascore.co/docs) para mostrar os detalhes das partidas.
