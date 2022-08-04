@@ -1,7 +1,8 @@
 # CSGOMatches
 
-<img src="screenshots/home.png" width="300">
-<img src="screenshots/detail.png" width="300"> 
+![](screenshots/home.jpg)
+
+![](screenshots/detail.jpg) 
 
 
 Fique por dentro das próximas partidas de CS:GO!
